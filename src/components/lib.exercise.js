@@ -1,16 +1,45 @@
-import styled from '@emotion/styled'
+import styled from '@emotion/styled/macro'
 import {Dialog as ReachDialog} from '@reach/dialog'
+import React from 'react'
+import * as mq from 'styles/media-queries'
+import * as colors from 'styles/colors'
 
-// 🐨 create a button styled component here called "Button"
-// make it look nice and allow it to support a "variant" prop which can be
-// either "primary" or "secondary".
-// 💰 don't forget to export it at the bottom!
-// 💰 In my final version, I style padding, border, lineHeight, and borderRadius
-//    the same for both types, and then change the background and color based
-//    on the given variant.
-// 🦉 remember, you don't have to make things look perfect or just like they
-// do in the final example. Just make sure you understand how to create the
-// styled component and accept a prop to change which styles apply.
+// you can use a media query in an object like so:
+// {
+//   [mq.small]: {
+//     /* small styles */
+//   }
+// }
+
+// or in a string like so:
+// css`
+//   ${mq.small} {
+//     /* small styles */
+//   }
+// `
+
+const Button = styled.button(props => {
+  const isPrimary = props.variant === 'primary'
+  return {
+    color: isPrimary ? colors.gray : colors.text,
+    backgroundColor: isPrimary ? colors.indigo : colors.gray20,
+    borderRadius: '3px',
+    border: '0',
+    lineHeight: '1',
+    padding: '10px 15px'
+}})
+
+const Input = styled.input({
+  borderRadius: '3px',
+  border: '1px solid #f1f1f4',
+  background: '#f1f2f7',
+  padding: '8px 12px',
+})
+//
+const FormGroup = styled.form({
+  display: 'flex',
+  flexDirection: 'column',
+})
 
 // 🐨 Feel free to create as many reusable styled components here as you'd like
 // 💰 in my finished version I have: Button, Input, CircleButton, Dialog, FormGroup
@@ -68,4 +97,4 @@ const Dialog = styled(ReachDialog)({
   },
 })
 
-export {CircleButton, Dialog}
+export {CircleButton, Dialog, Button, Input, FormGroup}
